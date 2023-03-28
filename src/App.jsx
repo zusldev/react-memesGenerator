@@ -55,7 +55,7 @@ function App() {
             <div className="meme" id="meme">
                 <h2>{linea1}</h2>
                 <img
-                    src={"./assets/" + img + ".jpg"}
+                    src={"/assets/" + img + ".jpg"}
                     alt="description image to make a meme"
                 />
                 <h2>{linea2}</h2>
