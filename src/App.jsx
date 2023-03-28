@@ -1,10 +1,18 @@
 import { useState } from "react";
 import "./App.css";
 import html2canvas from "html2canvas";
+
+import fire from "../public/fire.jpg";
+import futurama from "../public/futurama.jpg";
+import history from "../public/history.jpg";
+import matrix from "../public/matrix.jpg";
+import philosoraptor from "../public/philosoraptor.jpg";
+import smart from "../public/smart.jpg";
+
 function App() {
     const [linea1, setLinea1] = useState("");
     const [linea2, setLinea2] = useState("");
-    const [img, setImg] = useState("fire");
+    const [img, setImg] = useState(fire);
 
     const onChangeLinea1 = (e) => {
         setLinea1(e.target.value);
@@ -21,7 +29,30 @@ function App() {
         });
     };
     const onChangeImg = (e) => {
-        setImg(e.target.value);
+        const value = e.target.value;
+        switch (value) {
+            case "fire":
+                setImg(fire);
+                break;
+            case "futurama":
+                setImg(futurama);
+                break;
+            case "history":
+                setImg(history);
+                break;
+            case "matrix":
+                setImg(matrix);
+                break;
+            case "philosoraptor":
+                setImg(philosoraptor);
+                break;
+            case "smart":
+                setImg(smart);
+                break;
+            default:
+                setImg(fire);
+                break;
+        }
     };
     return (
         <div className="App">
@@ -54,10 +85,7 @@ function App() {
             </div>
             <div className="meme" id="meme">
                 <h2>{linea1}</h2>
-                <img
-                    src={"../assets/" + img + ".jpg"}
-                    alt="description image to make a meme"
-                />
+                <img src={img} alt="description image to make a meme" />
                 <h2>{linea2}</h2>
             </div>
             <div className="footer">
