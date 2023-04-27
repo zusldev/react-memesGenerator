@@ -46,7 +46,8 @@ function App() {
   };
   // download meme
   const exportarMeme = () => {
-    html2canvas(document.querySelector("#meme")).then((canvas) => {
+    const meme = document.querySelector("#meme");
+    html2canvas(meme).then((canvas) => {
       canvas.toBlob(function (blob) {
         saveAs(blob, `meme_${img}.png`);
       });
