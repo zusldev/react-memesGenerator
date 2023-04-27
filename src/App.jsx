@@ -14,6 +14,7 @@ function App() {
   const [linea1, setLinea1] = useState("");
   const [linea2, setLinea2] = useState("");
   const [img, setImg] = useState("");
+  const [count, setCount] = useState(0);
 
   // Custom image
   const handleImageUpload = (e) => {
@@ -46,10 +47,12 @@ function App() {
   };
   // download meme
   const exportarMeme = () => {
+    count + 1;
+    setCount(count + 1);
     const meme = document.querySelector("#meme");
     html2canvas(meme).then((canvas) => {
       canvas.toBlob(function (blob) {
-        saveAs(blob, `meme_${img}.png`);
+        saveAs(blob, `meme_${count}.png`);
       });
     });
   };
