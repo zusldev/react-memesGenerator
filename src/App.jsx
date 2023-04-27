@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
 
 import fire from "../public/fire.jpg";
 import futurama from "../public/futurama.jpg";
@@ -43,14 +44,15 @@ function App() {
   const onChangeLinea2 = (e) => {
     setLinea2(e.target.value);
   };
+  // download meme
   const exportarMeme = () => {
     html2canvas(document.querySelector("#meme")).then((canvas) => {
-      let link = document.createElement("a");
-      link.download = `meme_${img}.png`;
-      link.href = canvas.toDataURL();
-      link.click();
+      canvas.toBlob(function (blob) {
+        saveAs(blob, `meme_${img}.png`);
+      });
     });
   };
+
   const onChangeImg = (e) => {
     const { value } = e.target;
     switch (value) {
