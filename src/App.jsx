@@ -11,16 +11,16 @@ import matrix from "../public/matrix.jpg";
 import philosoraptor from "../public/philosoraptor.jpg";
 import smart from "../public/smart.jpg";
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB en bytes
-
 function App() {
   const [linea1, setLinea1] = useState("");
   const [linea2, setLinea2] = useState("");
   const [selectedOption, setSelectedOption] = useState("custom");
   const [img, setImg] = useState("");
 
+  const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB en bytes
   let imgFileName = "";
 
+  // Custom image
   const handleImageUpload = (e) => {
     const [file] = e.target.files;
     if (file && file.size <= MAX_IMAGE_SIZE) {
@@ -44,7 +44,6 @@ function App() {
     }
   };
   // load img from local storage
-  const imgLocal = localStorage.getItem("img");
   useEffect(() => {
     const imgLocal = localStorage.getItem("img");
     if (imgLocal) {
@@ -54,6 +53,10 @@ function App() {
 
   // download meme
   const exportarMeme = () => {
+    if (!img) {
+      alert("No hay una imagen para exportar");
+      return;
+    }
     const meme = document.querySelector("#meme");
     html2canvas(meme).then((canvas) => {
       canvas.toBlob(function (blob) {
